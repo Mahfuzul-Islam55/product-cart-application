@@ -17,6 +17,7 @@ export interface IPayload {
 }
 
 export interface IProduct {
+  id?: number;
   name: string;
   category: string;
   url: string;

@@ -22,8 +22,8 @@ export const productReducer = (state = InitialState, action: IAction) => {
           name: product?.name,
           category: product?.category,
           url: product?.url,
-          price: product?.price,
-          quantity: product?.quantity,
+          price: Number(product?.price),
+          quantity: Number(product?.quantity),
         },
       ];
 
