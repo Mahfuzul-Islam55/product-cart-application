@@ -1,11 +1,16 @@
 import React, { Fragment } from "react";
+import { useDispatch } from "react-redux";
 import { IProduct } from "../redux/product/productType";
-
+import { addCart } from "../redux/cart/cartAction";
 interface props {
   product: IProduct;
 }
 
 const Product = ({ product }: props) => {
+  const dispatch = useDispatch();
+  const addToCartHandle = () => {
+    dispatch(addCart(product));
+  };
   return (
     <div className="lws-productCard">
       <img
@@ -24,7 +29,19 @@ const Product = ({ product }: props) => {
             QTY <span className="lws-quantity">{product.quantity}</span>
           </p>
         </div>
-        <button className="lws-btnAddToCart">Add To Cart</button>
+        {product.quantity > 0 ? (
+          <button className="lws-btnAddToCart" onClick={addToCartHandle}>
+            Add To Cart
+          </button>
+        ) : (
+          <button
+            className="lws-btnAddToCart"
+            onClick={addToCartHandle}
+            disabled
+          >
+            Add To Cart
+          </button>
+        )}
       </div>
     </div>
   );

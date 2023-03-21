@@ -18,7 +18,6 @@ export const cartReducer = (state = InitialState, action: IAction) => {
           quantity: Number(product?.quantity),
         },
       ];
-
     default:
       return [...state];
   }
