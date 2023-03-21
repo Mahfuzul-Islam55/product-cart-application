@@ -1,6 +1,6 @@
 import React, { Fragment } from "react";
 import { useSelector } from "react-redux";
-import { IProduct } from "../redux/product/productType";
+import { IInitialState, IProduct } from "../redux/product/productType";
 import { IRootState } from "../redux/stateType";
 import Product from "./Product";
 
@@ -14,7 +14,7 @@ const ProductList = () => {
             There is no product added yet.
           </h3>
         ) : (
-          allProduct.map((product: IProduct) => (
+          allProduct.map((product: IInitialState) => (
             <Product product={product} key={product.id} />
           ))
         )}

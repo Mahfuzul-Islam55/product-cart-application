@@ -1,4 +1,4 @@
-import { CREATE_PRODUCT } from "./ProductActionType";
+import { ADD_PRODUCT_TO_CART, CREATE_PRODUCT } from "./ProductActionType";
 import { IAction, IInitialState } from "./productType";
 import { InitialState } from "./InitialState";
 
@@ -12,6 +12,7 @@ const maxId = (state: IInitialState[]) => {
 };
 export const productReducer = (state = InitialState, action: IAction) => {
   const { type, payload } = action;
+
   switch (type) {
     case CREATE_PRODUCT:
       const { product } = payload;
@@ -26,7 +27,18 @@ export const productReducer = (state = InitialState, action: IAction) => {
           quantity: Number(product?.quantity),
         },
       ];
-
+    case ADD_PRODUCT_TO_CART:
+      return state.map((product) => {
+        if (product.id == payload.id) {
+          return {
+            ...product,
+            quantity: product.quantity - 1,
+          };
+        }
+        return {
+          ...product,
+        };
+      });
     default:
       return [...state];
   }

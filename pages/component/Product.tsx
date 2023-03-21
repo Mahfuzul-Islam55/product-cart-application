@@ -1,14 +1,16 @@
 import React, { Fragment } from "react";
 import { useDispatch } from "react-redux";
-import { IProduct } from "../redux/product/productType";
+import { IInitialState } from "../redux/product/productType";
 import { addCart } from "../redux/cart/cartAction";
+import { addProductToCart } from "../redux/product/productAction";
 interface props {
-  product: IProduct;
+  product: IInitialState;
 }
 
 const Product = ({ product }: props) => {
   const dispatch = useDispatch();
   const addToCartHandle = () => {
+    dispatch(addProductToCart(product.id));
     dispatch(addCart(product));
   };
   return (

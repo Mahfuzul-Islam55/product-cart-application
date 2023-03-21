@@ -13,7 +13,7 @@ export interface IAction {
 
 export interface IPayload {
   product?: IProduct;
-  id?: string;
+  id?: number;
 }
 
 export interface IProduct {
