@@ -9,9 +9,15 @@ const ProductList = () => {
   return (
     <Fragment>
       <div className="productContainer" id="lws-productContainer">
-        {allProduct.map((product: IProduct) => (
-          <Product product={product} key={product.id} />
-        ))}
+        {allProduct.length === 0 ? (
+          <h3 style={{ display: "flex", justifyContent: "center" }}>
+            There is no product added yet.
+          </h3>
+        ) : (
+          allProduct.map((product: IProduct) => (
+            <Product product={product} key={product.id} />
+          ))
+        )}
       </div>
     </Fragment>
   );

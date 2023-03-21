@@ -1,23 +1,22 @@
 import React from "react";
+import { IProduct } from "../redux/product/productType";
 
-const ShoppingCart = () => {
+interface props {
+  cartProduct: IProduct;
+}
+const ShoppingCart = ({ cartProduct }: props) => {
+  const { name, category, url, id, price, quantity } = cartProduct;
   return (
     <div className="cartCard">
       <div className="flex items-center col-span-6 space-x-6">
         {/* <!-- cart image --> */}
-        <img
-          className="lws-cartImage"
-          src="https://i.dummyjson.com/data/products/40/thumbnail.jpg"
-          alt="product"
-        />
+        <img className="lws-cartImage" src={url} alt="product" />
         {/* <!-- cart item info --> */}
         <div className="space-y-2">
-          <h4 className="lws-cartName">
-            Fjallraven - Foldsack No. 1 Backpack, Fits 15 Laptop
-          </h4>
-          <p className="lws-cartCategory">Men's clothing</p>
+          <h4 className="lws-cartName">{name}</h4>
+          <p className="lws-cartCategory">{category}</p>
           <p>
-            BDT <span className="lws-cartPrice">1100</span>
+            BDT <span className="lws-cartPrice">{price}</span>
           </p>
         </div>
       </div>
