@@ -1,6 +1,13 @@
-import '@/styles/globals.css'
-import type { AppProps } from 'next/app'
+import "@/styles/globals.css";
+import type { AppProps } from "next/app";
+import { Fragment } from "react";
+import Navbar from "./component/Navbar";
 
 export default function App({ Component, pageProps }: AppProps) {
-  return <Component {...pageProps} />
+  return (
+    <Fragment>
+      <Navbar />
+      <Component {...pageProps} />
+    </Fragment>
+  );
 }
