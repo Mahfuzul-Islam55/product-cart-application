@@ -1,6 +1,6 @@
 import React, { Fragment } from "react";
 import { useSelector } from "react-redux";
-import { IProduct } from "../redux/product/productType";
+import { IInitialState, IProduct } from "../redux/product/productType";
 import { IRootState } from "../redux/stateType";
 import ShoppingCart from "./ShoppingCart";
 
@@ -9,7 +9,7 @@ const ShoppingCartList = () => {
 
   return (
     <Fragment>
-      {allCart.map((cart: IProduct) => (
+      {allCart.map((cart: IInitialState) => (
         <ShoppingCart cartProduct={cart} key={cart.id} />
       ))}
     </Fragment>

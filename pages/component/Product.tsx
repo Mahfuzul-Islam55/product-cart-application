@@ -1,17 +1,26 @@
 import React, { Fragment } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { IInitialState } from "../redux/product/productType";
-import { addCart } from "../redux/cart/cartAction";
+import { addCart, updateCart } from "../redux/cart/cartAction";
 import { addProductToCart } from "../redux/product/productAction";
+import { IRootState } from "../redux/stateType";
 interface props {
   product: IInitialState;
 }
 
 const Product = ({ product }: props) => {
   const dispatch = useDispatch();
+  const allCartProduct: any = useSelector((state: IRootState) => state.cart);
   const addToCartHandle = () => {
+    const found = allCartProduct.some((cart: IInitialState) => {
+      if (cart.id === product.id) return true;
+      return false;
+    });
+
+    if (found) dispatch(updateCart(product.id));
+    else dispatch(addCart(product));
+
     dispatch(addProductToCart(product.id));
-    dispatch(addCart(product));
   };
   return (
     <div className="lws-productCard">
