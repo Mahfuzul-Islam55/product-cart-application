@@ -64,6 +64,7 @@ const ShoppingCart = ({ cartProduct }: props) => {
     dispatch(deleteCartItem(id));
     dispatch(decrementCart(quantity));
     dispatch(deletingProductFromCart(id, quantity));
+    dispatch(decrementingBill(price * quantity));
   };
 
   useEffect(() => {

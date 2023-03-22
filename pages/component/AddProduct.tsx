@@ -84,6 +84,7 @@ const AddProduct = () => {
               value={product.price}
               pattern="[0-9]*"
               onChange={productHandle}
+              min={0}
             />
           </div>
 
@@ -97,6 +98,7 @@ const AddProduct = () => {
               name="quantity"
               value={product.quantity}
               onChange={productHandle}
+              min={0}
             />
           </div>
         </div>
