@@ -1,4 +1,9 @@
-import { DECREMENT_CART, TOTAL_CART } from "./countType";
+import {
+  DECREMENT_BILL,
+  DECREMENT_CART,
+  INCREMENT_BILL,
+  TOTAL_CART,
+} from "./countType";
 import { IAction, initialStateCart } from "./initialStateCount";
 
 export const countReducer = (state = initialStateCart, action: IAction) => {
@@ -14,7 +19,16 @@ export const countReducer = (state = initialStateCart, action: IAction) => {
         ...state,
         cartNumber: state!.cartNumber - payload!.id!,
       };
-
+    case INCREMENT_BILL:
+      return {
+        ...state,
+        cartBill: state!.cartBill + payload!.amount!,
+      };
+    case DECREMENT_BILL:
+      return {
+        ...state,
+        cartBill: state!.cartBill - payload!.amount!,
+      };
     default:
       return { ...state };
   }

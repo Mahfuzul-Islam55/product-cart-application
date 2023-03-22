@@ -5,7 +5,12 @@ import {
   deleteCartItem,
   updateCart,
 } from "../redux/cart/cartAction";
-import { decrementCart, totalCart } from "../redux/count/countAction";
+import {
+  decrementCart,
+  decrementingBill,
+  incrementingBill,
+  totalCart,
+} from "../redux/count/countAction";
 
 import {
   addProductToCart,
@@ -37,6 +42,7 @@ const ShoppingCart = ({ cartProduct }: props) => {
     dispatch(updateCart(id));
     dispatch(addProductToCart(id));
     dispatch(totalCart());
+    dispatch(incrementingBill(price));
   };
 
   const removingProductNumberHandle = () => {
@@ -44,7 +50,7 @@ const ShoppingCart = ({ cartProduct }: props) => {
     dispatch(decrementingProductFromCart(id));
     setMaxItemInclude(product());
     dispatch(decrementCart());
-    console.log(maxItemInclude);
+    dispatch(decrementingBill(price));
   };
 
   const deleteCartHandle = (id: number, quantity: number) => {

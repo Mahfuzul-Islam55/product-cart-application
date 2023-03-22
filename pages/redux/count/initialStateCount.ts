@@ -17,4 +17,5 @@ export interface IPayload {
   cartNumber?: number;
   cartBill?: number;
   id?: number;
+  amount?: number;
 }

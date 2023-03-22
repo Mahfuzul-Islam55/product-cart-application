@@ -4,7 +4,7 @@ import { IInitialState } from "../redux/product/productType";
 import { addCart, updateCart } from "../redux/cart/cartAction";
 import { addProductToCart } from "../redux/product/productAction";
 import { IRootState } from "../redux/stateType";
-import { totalCart } from "../redux/count/countAction";
+import { incrementingBill, totalCart } from "../redux/count/countAction";
 
 interface props {
   product: IInitialState;
@@ -25,6 +25,7 @@ const Product = ({ product }: props) => {
 
     dispatch(addProductToCart(product.id));
     dispatch(totalCart());
+    dispatch(incrementingBill(product.price));
   };
 
   return (
