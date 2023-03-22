@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { decrementAmountCart, updateCart } from "../redux/cart/cartAction";
+import { decrementCart, totalCart } from "../redux/count/countAction";
 
 import {
   addProductToCart,
@@ -30,12 +31,14 @@ const ShoppingCart = ({ cartProduct }: props) => {
     setMaxItemInclude(product());
     dispatch(updateCart(id));
     dispatch(addProductToCart(id));
+    dispatch(totalCart());
   };
 
   const removingProductNumberHandle = () => {
     dispatch(decrementAmountCart(id));
     dispatch(decrementingProductFromCart(id));
     setMaxItemInclude(product());
+    dispatch(decrementCart());
     console.log(maxItemInclude);
   };
 

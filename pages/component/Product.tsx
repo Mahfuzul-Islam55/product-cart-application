@@ -4,6 +4,8 @@ import { IInitialState } from "../redux/product/productType";
 import { addCart, updateCart } from "../redux/cart/cartAction";
 import { addProductToCart } from "../redux/product/productAction";
 import { IRootState } from "../redux/stateType";
+import { totalCart } from "../redux/count/countAction";
+
 interface props {
   product: IInitialState;
 }
@@ -11,6 +13,7 @@ interface props {
 const Product = ({ product }: props) => {
   const dispatch = useDispatch();
   const allCartProduct: any = useSelector((state: IRootState) => state.cart);
+
   const addToCartHandle = () => {
     const found = allCartProduct.some((cart: IInitialState) => {
       if (cart.id === product.id) return true;
@@ -21,7 +24,9 @@ const Product = ({ product }: props) => {
     else dispatch(addCart(product));
 
     dispatch(addProductToCart(product.id));
+    dispatch(totalCart());
   };
+
   return (
     <div className="lws-productCard">
       <img
