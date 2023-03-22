@@ -34,23 +34,30 @@ const ShoppingCart = ({ cartProduct }: props) => {
     let max: IProduct = allProduct.find(
       (product: IProduct) => product.id === id
     );
-    return max ? max.quantity : 0;
+    console.log("after decrement", max.quantity);
+    return max.quantity;
   };
 
   const addingMoreProductNumberHandle = () => {
-    setMaxItemInclude(product());
     dispatch(updateCart(id));
     dispatch(addProductToCart(id));
     dispatch(totalCart());
     dispatch(incrementingBill(price));
+    let max: IProduct = allProduct.find(
+      (product: IProduct) => product.id === id
+    );
+    setMaxItemInclude(max.quantity - 1);
   };
 
   const removingProductNumberHandle = () => {
     dispatch(decrementAmountCart(id));
     dispatch(decrementingProductFromCart(id));
-    setMaxItemInclude(product());
     dispatch(decrementCart());
     dispatch(decrementingBill(price));
+    let max: IProduct = allProduct.find(
+      (product: IProduct) => product.id === id
+    );
+    setMaxItemInclude(max.quantity + 1);
   };
 
   const deleteCartHandle = (id: number, quantity: number) => {
@@ -80,7 +87,7 @@ const ShoppingCart = ({ cartProduct }: props) => {
       <div className="flex items-center justify-center col-span-4 mt-4 space-x-8 md:mt-0">
         {/* <!-- amount buttons --> */}
         <div className="flex items-center space-x-4">
-          {maxItemInclude > 1 ? (
+          {maxItemInclude >= 1 ? (
             <button
               className="lws-incrementQuantity"
               onClick={addingMoreProductNumberHandle}
