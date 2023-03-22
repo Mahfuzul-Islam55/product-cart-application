@@ -15,6 +15,6 @@ export const InitialState: IInitialState[] = [
     category: "Men",
     url: "https://i.dummyjson.com/data/products/59/thumbnail.jpg",
     price: 200,
-    quantity: 10,
+    quantity: 3,
   },
 ];

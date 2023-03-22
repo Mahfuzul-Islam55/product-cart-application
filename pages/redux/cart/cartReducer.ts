@@ -1,6 +1,6 @@
 import { InitialState } from "../product/InitialState";
 import { IAction } from "../product/productType";
-import { ADD_TO_CART, UPDATE_CART } from "./cartActionType";
+import { ADD_TO_CART, DECREMENT_AMOUNT, UPDATE_CART } from "./cartActionType";
 import { InitialStateCart } from "./InitialStateCart";
 
 export const cartReducer = (state = InitialStateCart, action: IAction) => {
@@ -31,6 +31,19 @@ export const cartReducer = (state = InitialStateCart, action: IAction) => {
           ...cart,
         };
       });
+    case DECREMENT_AMOUNT:
+      return state.map((cart) => {
+        if (cart.id === payload.id) {
+          return {
+            ...cart,
+            quantity: cart.quantity - 1,
+          };
+        }
+        return {
+          ...cart,
+        };
+      });
+
     default:
       return [...state];
   }

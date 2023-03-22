@@ -1,4 +1,8 @@
-import { ADD_PRODUCT_TO_CART, CREATE_PRODUCT } from "./ProductActionType";
+import {
+  ADD_PRODUCT_TO_CART,
+  CREATE_PRODUCT,
+  DECREMENT_PRODUCT_AMOUNT_FROM_CART,
+} from "./ProductActionType";
 import { IAction, IInitialState } from "./productType";
 import { InitialState } from "./InitialState";
 
@@ -33,6 +37,18 @@ export const productReducer = (state = InitialState, action: IAction) => {
           return {
             ...product,
             quantity: product.quantity - 1,
+          };
+        }
+        return {
+          ...product,
+        };
+      });
+    case DECREMENT_PRODUCT_AMOUNT_FROM_CART:
+      return state.map((product) => {
+        if (product.id == payload.id) {
+          return {
+            ...product,
+            quantity: product.quantity + 1,
           };
         }
         return {

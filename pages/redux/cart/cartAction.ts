@@ -1,5 +1,5 @@
 import { IProduct } from "../product/productType";
-import { ADD_TO_CART, UPDATE_CART } from "./cartActionType";
+import { ADD_TO_CART, DECREMENT_AMOUNT, UPDATE_CART } from "./cartActionType";
 
 export const addCart = (product: IProduct) => {
   return {
@@ -13,6 +13,15 @@ export const addCart = (product: IProduct) => {
 export const updateCart = (id: number) => {
   return {
     type: UPDATE_CART,
+    payload: {
+      id: id,
+    },
+  };
+};
+
+export const decrementAmountCart = (id: number) => {
+  return {
+    type: DECREMENT_AMOUNT,
     payload: {
       id: id,
     },

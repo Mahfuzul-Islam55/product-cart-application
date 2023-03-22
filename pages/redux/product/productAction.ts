@@ -1,4 +1,8 @@
-import { ADD_PRODUCT_TO_CART, CREATE_PRODUCT } from "./ProductActionType";
+import {
+  ADD_PRODUCT_TO_CART,
+  CREATE_PRODUCT,
+  DECREMENT_PRODUCT_AMOUNT_FROM_CART,
+} from "./ProductActionType";
 import { IProductType } from "./productType";
 
 export const createProduct = (product: IProductType) => {
@@ -13,6 +17,15 @@ export const createProduct = (product: IProductType) => {
 export const addProductToCart = (id: number) => {
   return {
     type: ADD_PRODUCT_TO_CART,
+    payload: {
+      id: id,
+    },
+  };
+};
+
+export const decrementingProductFromCart = (id: number) => {
+  return {
+    type: DECREMENT_PRODUCT_AMOUNT_FROM_CART,
     payload: {
       id: id,
     },
