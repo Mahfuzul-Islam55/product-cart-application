@@ -1,11 +1,16 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { decrementAmountCart, updateCart } from "../redux/cart/cartAction";
+import {
+  decrementAmountCart,
+  deleteCartItem,
+  updateCart,
+} from "../redux/cart/cartAction";
 import { decrementCart, totalCart } from "../redux/count/countAction";
 
 import {
   addProductToCart,
   decrementingProductFromCart,
+  deletingProductFromCart,
 } from "../redux/product/productAction";
 import { IInitialState, IProduct } from "../redux/product/productType";
 import { IRootState } from "../redux/stateType";
@@ -40,6 +45,12 @@ const ShoppingCart = ({ cartProduct }: props) => {
     setMaxItemInclude(product());
     dispatch(decrementCart());
     console.log(maxItemInclude);
+  };
+
+  const deleteCartHandle = (id: number, quantity: number) => {
+    dispatch(deleteCartItem(id));
+    dispatch(decrementCart(quantity));
+    dispatch(deletingProductFromCart(id, quantity));
   };
 
   useEffect(() => {
@@ -104,7 +115,10 @@ const ShoppingCart = ({ cartProduct }: props) => {
       </div>
       {/* <!-- delete button --> */}
       <div className="flex items-center justify-center col-span-2 mt-4 md:justify-end md:mt-0">
-        <button className="lws-removeFromCart">
+        <button
+          className="lws-removeFromCart"
+          onClick={() => deleteCartHandle(id, quantity)}
+        >
           <i className="text-lg text-red-400 fa-solid fa-trash"></i>
         </button>
       </div>

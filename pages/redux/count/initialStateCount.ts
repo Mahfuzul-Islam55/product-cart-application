@@ -10,10 +10,11 @@ export const initialStateCart: IInitialStateCart = {
 
 export interface IAction {
   type: string;
-  payload: IPayload;
+  payload?: IPayload;
 }
 
 export interface IPayload {
   cartNumber?: number;
   cartBill?: number;
+  id?: number;
 }

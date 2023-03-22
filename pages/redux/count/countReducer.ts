@@ -12,7 +12,7 @@ export const countReducer = (state = initialStateCart, action: IAction) => {
     case DECREMENT_CART:
       return {
         ...state,
-        cartNumber: state!.cartNumber - 1,
+        cartNumber: state!.cartNumber - payload!.id!,
       };
 
     default:

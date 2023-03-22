@@ -7,9 +7,11 @@ export const totalCart = () => {
   };
 };
 
-export const decrementCart = () => {
+export const decrementCart = (id: number = 1) => {
   return {
     type: DECREMENT_CART,
-    payload: {},
+    payload: {
+      id: id,
+    },
   };
 };

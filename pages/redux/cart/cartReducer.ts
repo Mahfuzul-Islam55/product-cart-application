@@ -1,6 +1,11 @@
 import { InitialState } from "../product/InitialState";
 import { IAction } from "../product/productType";
-import { ADD_TO_CART, DECREMENT_AMOUNT, UPDATE_CART } from "./cartActionType";
+import {
+  ADD_TO_CART,
+  DECREMENT_AMOUNT,
+  DELETE_CART_ITEM,
+  UPDATE_CART,
+} from "./cartActionType";
 import { InitialStateCart } from "./InitialStateCart";
 
 export const cartReducer = (state = InitialStateCart, action: IAction) => {
@@ -43,7 +48,8 @@ export const cartReducer = (state = InitialStateCart, action: IAction) => {
           ...cart,
         };
       });
-
+    case DELETE_CART_ITEM:
+      return state.filter((cart) => cart.id !== payload.id);
     default:
       return [...state];
   }

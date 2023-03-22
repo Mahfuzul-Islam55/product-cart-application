@@ -14,6 +14,7 @@ export interface IAction {
 export interface IPayload {
   product?: IProduct;
   id?: number;
+  amount?: number;
 }
 
 export interface IProduct {
